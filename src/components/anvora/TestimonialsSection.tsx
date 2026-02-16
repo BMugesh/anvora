@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
@@ -34,12 +34,20 @@ export default function TestimonialsSection() {
   const [current, setCurrent] = useState(0);
   const { ref, isVisible } = useScrollAnimation();
 
+  // Auto-rotate
+  useEffect(() => {
+    const timer = setInterval(() => setCurrent((c) => (c + 1) % testimonials.length), 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   const next = () => setCurrent((c) => (c + 1) % testimonials.length);
   const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
   const t = testimonials[current];
 
   return (
-    <section id="testimonials" className="py-24 md:py-32 bg-warm relative overflow-hidden">
+    <section id="testimonials" className="py-24 md:py-36 relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 cinematic-line" />
+
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
@@ -48,10 +56,10 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-semibold text-gold-dark uppercase tracking-widest mb-3 block">
+          <span className="text-sm font-semibold text-gold-dark uppercase tracking-[0.2em] mb-4 block font-display">
             Testimonials
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-extrabold text-foreground mb-4">
+          <h2 className="font-display text-3xl md:text-5xl font-black text-foreground mb-4">
             Loved by{" "}
             <span className="text-gradient-gold">Real People</span>
           </h2>
@@ -61,24 +69,24 @@ export default function TestimonialsSection() {
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="bg-card rounded-3xl p-8 md:p-12 border border-border text-center shadow-lg relative"
+              initial={{ opacity: 0, y: 20, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.97 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-card rounded-3xl p-8 md:p-12 border border-border text-center shadow-cinematic relative"
             >
-              <Quote className="w-10 h-10 text-gold/30 mx-auto mb-6" />
-              <p className="text-lg md:text-xl text-foreground leading-relaxed mb-8 italic">
+              <Quote className="w-10 h-10 text-gold/20 mx-auto mb-6" />
+              <p className="text-lg md:text-xl text-foreground leading-relaxed mb-8 font-body">
                 "{t.text}"
               </p>
               <div className="flex items-center justify-center gap-1 mb-4">
                 {Array.from({ length: t.stars }).map((_, i) => (
                   <motion.span
                     key={i}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: i * 0.1 }}
-                    className="text-gold text-xl"
+                    initial={{ scale: 0, rotate: -20 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: i * 0.08, type: "spring" }}
+                    className="text-gold text-lg"
                   >
                     ★
                   </motion.span>
@@ -93,7 +101,7 @@ export default function TestimonialsSection() {
           <div className="flex items-center justify-center gap-4 mt-8">
             <button
               onClick={prev}
-              className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:border-accent/50 transition-colors"
+              className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:border-accent/40 transition-all hover:shadow-cinematic"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="w-5 h-5 text-muted-foreground" />
@@ -103,8 +111,8 @@ export default function TestimonialsSection() {
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    i === current ? "bg-gold w-8" : "bg-border"
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === current ? "bg-gold w-8" : "bg-border w-2"
                   }`}
                   aria-label={`Go to testimonial ${i + 1}`}
                 />
@@ -112,7 +120,7 @@ export default function TestimonialsSection() {
             </div>
             <button
               onClick={next}
-              className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:border-accent/50 transition-colors"
+              className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:border-accent/40 transition-all hover:shadow-cinematic"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-5 h-5 text-muted-foreground" />

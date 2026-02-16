@@ -41,22 +41,25 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40, rotateX: 10 }}
-      animate={isVisible ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-      className="group relative bg-card rounded-2xl p-8 border border-border hover:border-accent/50 transition-all duration-500 hover:shadow-gold/20 hover:shadow-xl"
-      style={{ perspective: "1000px" }}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative bg-card rounded-2xl p-8 border border-border hover:border-accent/40 transition-all duration-500 hover:shadow-cinematic"
     >
-      <div className="w-12 h-12 rounded-xl bg-gradient-gold flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+      <motion.div
+        className="w-12 h-12 rounded-xl bg-gradient-gold flex items-center justify-center mb-5"
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
         <service.icon className="w-6 h-6 text-accent-foreground" />
-      </div>
+      </motion.div>
       <h3 className="font-display text-lg font-bold text-foreground mb-3">
         {service.title}
       </h3>
       <p className="text-muted-foreground text-sm leading-relaxed">
         {service.description}
       </p>
-      <div className="absolute inset-0 rounded-2xl bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
     </motion.div>
   );
 }
@@ -65,7 +68,10 @@ export default function ServicesSection() {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
 
   return (
-    <section id="services" className="py-24 md:py-32 bg-warm relative overflow-hidden">
+    <section id="services" className="py-24 md:py-36 relative overflow-hidden">
+      {/* Decorative line */}
+      <div className="absolute top-0 left-0 right-0 cinematic-line" />
+
       <div className="container mx-auto px-6">
         <motion.div
           ref={headerRef}
@@ -74,10 +80,10 @@ export default function ServicesSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-semibold text-gold-dark uppercase tracking-widest mb-3 block">
+          <span className="text-sm font-semibold text-gold-dark uppercase tracking-[0.2em] mb-4 block font-display">
             What We Do
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-extrabold text-foreground mb-4">
+          <h2 className="font-display text-3xl md:text-5xl font-black text-foreground mb-4">
             Solutions That{" "}
             <span className="text-gradient-gold">Actually Work</span>
           </h2>

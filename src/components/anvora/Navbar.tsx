@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Services", href: "#services" },
+  { label: "Portfolio", href: "#portfolio" },
   { label: "Community", href: "#community" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
@@ -28,14 +29,14 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-card/90 backdrop-blur-xl shadow-lg border-b border-border"
+          ? "bg-card/80 backdrop-blur-2xl shadow-cinematic border-b border-border"
           : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
-        <a href="#home" className="font-display text-2xl font-bold tracking-tight">
+        <a href="#home" className="font-display text-2xl font-black tracking-tight">
           <span className="text-gradient-gold">Anvora</span>
         </a>
 
@@ -45,17 +46,21 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
+              className={`text-sm font-medium transition-colors relative group ${
+                scrolled ? "text-muted-foreground hover:text-foreground" : "hover:text-gold"
+              }`}
+              style={!scrolled ? { color: "hsl(0 0% 100% / 0.7)" } : undefined}
             >
               {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gradient-gold text-accent-foreground font-semibold text-sm px-5 py-2.5 rounded-lg hover:shadow-gold transition-all duration-300 hover:scale-105"
+            className="bg-gradient-gold font-display font-bold text-sm px-5 py-2.5 rounded-lg shadow-gold hover:scale-105 transition-all duration-300"
+            style={{ color: "hsl(235 40% 12%)" }}
           >
             Place Your Order
           </a>
@@ -64,7 +69,8 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-foreground"
+          className="md:hidden"
+          style={{ color: scrolled ? undefined : "hsl(0 0% 100%)" }}
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -78,7 +84,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-card/95 backdrop-blur-xl border-b border-border overflow-hidden"
+            className="md:hidden bg-card/95 backdrop-blur-2xl border-b border-border overflow-hidden"
           >
             <div className="flex flex-col gap-4 px-6 py-6">
               {navLinks.map((link) => (
@@ -95,7 +101,8 @@ export default function Navbar() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-gold text-accent-foreground font-semibold text-sm px-5 py-2.5 rounded-lg text-center hover:shadow-gold transition-all"
+                className="bg-gradient-gold font-display font-bold text-sm px-5 py-2.5 rounded-lg text-center shadow-gold transition-all"
+                style={{ color: "hsl(235 40% 12%)" }}
               >
                 Place Your Order
               </a>

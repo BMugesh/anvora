@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Montserrat"', "sans-serif"],
+        display: ['"Poppins"', "sans-serif"],
         body: ['"Inter"', "sans-serif"],
       },
       colors: {
@@ -51,31 +51,21 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          light: "hsl(var(--gold-light))",
-          dark: "hsl(var(--gold-dark))",
-        },
-        indigo: {
-          DEFAULT: "hsl(var(--indigo))",
-          light: "hsl(var(--indigo-light))",
-          dark: "hsl(var(--indigo-dark))",
-          glow: "hsl(var(--indigo-glow))",
-        },
-        warm: {
-          DEFAULT: "hsl(var(--warm))",
-          dark: "hsl(var(--warm-dark))",
-        },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
+        // Anvora Custom Colors
+        anvora: {
+            black: "hsl(var(--anvora-black))",
+            indigo: {
+                DEFAULT: "hsl(var(--anvora-indigo))", // #4F46E5
+                light: "hsl(var(--anvora-indigo-light))",
+                glow: "hsl(var(--anvora-indigo-glow))",
+            },
+            gold: {
+                DEFAULT: "hsl(var(--anvora-gold))", // #FBBF24
+                light: "hsl(var(--anvora-gold-light))",
+                dark: "hsl(var(--anvora-gold-dark))",
+            },
+            glass: "hsla(var(--anvora-glass))",
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -91,49 +81,39 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "fade-in": {
+            from: { opacity: "0" },
+            to: { opacity: "1" },
+        },
+        "fade-out": {
+            from: { opacity: "1" },
+            to: { opacity: "0" },
+        },
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" },
         },
-        "float-slow": {
-          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
-          "50%": { transform: "translateY(-30px) rotate(3deg)" },
+        "magnetic-pulse": {
+            "0%, 100%": { boxShadow: "0 0 0 0px hsl(var(--anvora-gold) / 0.0)" },
+            "50%": { boxShadow: "0 0 0 4px hsl(var(--anvora-gold) / 0.2)" },
         },
-        "pulse-gold": {
-          "0%, 100%": { boxShadow: "0 0 20px 4px hsl(42 92% 55% / 0.3)" },
-          "50%": { boxShadow: "0 0 40px 12px hsl(42 92% 55% / 0.5)" },
-        },
-        wiggle: {
-          "0%, 100%": { transform: "rotate(-2deg)" },
-          "50%": { transform: "rotate(2deg)" },
-        },
-        "particle-float": {
-          "0%": { transform: "translateY(0) translateX(0)", opacity: "0" },
-          "10%": { opacity: "1" },
-          "90%": { opacity: "1" },
-          "100%": { transform: "translateY(-100vh) translateX(50px)", opacity: "0" },
-        },
-        "glow-pulse": {
-          "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "0.8" },
-        },
-        "slide-up-fade": {
-          "0%": { transform: "translateY(30px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
+        "grid-spin": {
+             "0%": { transform: "rotate(0deg) scale(0.8)", opacity: "0" },
+             "50%": { opacity: "0.5" },
+             "100%": { transform: "rotate(360deg) scale(1.2)", opacity: "0" }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.5s ease-out",
+        "fade-out": "fade-out 0.5s ease-out",
         float: "float 6s ease-in-out infinite",
-        "float-slow": "float-slow 8s ease-in-out infinite",
-        "pulse-gold": "pulse-gold 2s ease-in-out infinite",
-        wiggle: "wiggle 0.5s ease-in-out infinite",
-        "particle-float": "particle-float 15s linear infinite",
-        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
-        "slide-up-fade": "slide-up-fade 0.6s ease-out",
+        "magnetic-pulse": "magnetic-pulse 3s infinite",
+        "grid-spin": "grid-spin 4s linear infinite",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+

@@ -39,7 +39,7 @@ export const HowItWorks = () => {
     // Slow down: 500vh height
     // Hold at end: [0, 0.85, 1] map to ["1%", "-75%", "-75%"]
     // This allows the user to view the final card without it scrolling away immediately
-    const x = useTransform(scrollYProgress, [0, 0.85, 1], ["1%", "-55%", "-55%"]);
+    const x = useTransform(scrollYProgress, [0, 0.85, 1], ["1%", "-105%", "-105%"]);
 
     return (
         <section id="process" ref={targetRef} className="relative h-[500vh] bg-anvora-black">

@@ -33,7 +33,7 @@ const AnimatedCounter = ({ value, suffix }: { value: number; suffix: string }) =
 
 export const WhoWeAre = () => {
     const containerRef = useRef(null);
-    const isInView = useInView(containerRef, { once: true, margin: "-20%" });
+    const isInView = useInView(containerRef, { once: true, margin: "-30%" });
 
     return (
         <section id="about" className="py-24 bg-anvora-black relative overflow-hidden">
@@ -52,9 +52,9 @@ export const WhoWeAre = () => {
                         <h2 className="text-anvora-gold text-sm font-medium tracking-[0.3em] uppercase mb-4">
                             Start With Obsession
                         </h2>
-                        <h3 className="text-3xl md:text-5xl font-display font-bold text-white leading-tight mb-8">
-                            Late nights. No investors. <br />
-                            Just skill and <span className="text-anvora-indigo">intent.</span>
+                        <h3 className="text-3xl md:text-5xl font-display font-bold text-white mb-8 flex flex-col gap-4">
+                            <span>Late nights. No investors.</span>
+                            <span>Just skill and <span className="text-anvora-indigo">intent.</span></span>
                         </h3>
                         <p className="text-lg text-gray-400 leading-relaxed max-w-2xl mb-12">
                             We build for students who want more than resumes. For startups that need credibility.

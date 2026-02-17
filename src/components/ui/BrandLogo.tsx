@@ -13,7 +13,7 @@ export const BrandLogo = () => {
                 <span className="
                     font-display font-semibold text-2xl tracking-[3px] uppercase
                     text-transparent bg-clip-text
-                    bg-gradient-to-b from-[#F2F6FB] via-[#C9D4E2] to-[#9FAEC0]
+                    bg-gradient-to-b from-white via-slate-300 to-slate-500
                     drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]
                     filter
                 ">

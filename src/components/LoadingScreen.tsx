@@ -23,7 +23,7 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
         >
             <video
-                src="/loading.mp4"
+                src="/loading.mp4?v=1"
                 autoPlay
                 muted
                 playsInline

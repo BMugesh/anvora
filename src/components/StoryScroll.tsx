@@ -76,37 +76,80 @@ export const StoryScroll = () => {
                     style={{ background: bgGradient }}
                 />
 
+                {/* Animated Grid Overlay */}
+                <div
+                    className="absolute inset-0 z-[1] opacity-[0.05]"
+                    style={{
+                        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
+                        backgroundSize: '80px 80px',
+                        transform: 'perspective(500px) rotateX(60deg) translateY(-100px) scale(2)',
+                        transformOrigin: 'top center'
+                    }}
+                >
+                    <motion.div
+                        className="absolute inset-0 bg-transparent"
+                        animate={{ y: [0, 80] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                        style={{
+                            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
+                            backgroundSize: '80px 80px'
+                        }}
+                    />
+                </div>
+
+                {/* Light Streaks */}
+                <motion.div className="absolute inset-0 z-[1] overflow-hidden opacity-30">
+                    {[...Array(5)].map((_, i) => (
+                        <motion.div
+                            key={`streak-${i}`}
+                            className="absolute top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-anvora-indigo-light to-transparent blur-[2px]"
+                            style={{ left: `${20 + i * 15}%` }}
+                            animate={{
+                                opacity: [0, 0.5, 0],
+                                y: [-1000, 1000]
+                            }}
+                            transition={{
+                                duration: 5 + i * 2,
+                                repeat: Infinity,
+                                delay: i * 1.5,
+                                ease: "linear"
+                            }}
+                        />
+                    ))}
+                </motion.div>
+
                 {/* Noise Grain Overlay for Film Look */}
-                <div className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none mix-blend-overlay"
+                <div className="absolute inset-0 z-[1] opacity-[0.04] pointer-events-none mix-blend-overlay"
                     style={{ backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')" }}
                 />
 
                 {/* Central Holographic Sphere (Menu Interface feel) */}
                 <motion.div
-                    className="absolute z-[2] w-[60vmin] h-[60vmin] rounded-full border border-white/10"
+                    className="absolute z-[2] w-[60vmin] h-[60vmin] rounded-full border border-white/5 shadow-[0_0_100px_rgba(79,70,229,0.1)]"
                     style={{ rotate: orbitRotate, scale: starScale }}
                 >
-                    <div className="absolute inset-0 rounded-full border-t border-b border-white/20 animate-spin-slow" />
-                    <div className="absolute inset-[10%] rounded-full border-l border-r border-anvora-indigo/30 animate-spin-reverse-slower" />
+                    <div className="absolute inset-0 rounded-full border-t border-b border-white/10 animate-spin-slow" />
+                    <div className="absolute inset-[15%] rounded-full border-l border-r border-anvora-indigo/20 animate-spin-reverse-slower" />
+                    <div className="absolute inset-[30%] rounded-full border border-white/5 animate-pulse" />
                 </motion.div>
 
                 {/* Floating Particles (High Depth) */}
                 <div className="absolute inset-0 z-[3] overflow-hidden">
-                    {[...Array(50)].map((_, i) => (
+                    {[...Array(40)].map((_, i) => (
                         <motion.div
                             key={i}
                             className="absolute bg-white rounded-full"
                             style={{
                                 top: `${Math.random() * 100}%`,
                                 left: `${Math.random() * 100}%`,
-                                width: Math.random() * 3 + 'px',
-                                height: Math.random() * 3 + 'px',
+                                width: Math.random() * 2 + 'px',
+                                height: Math.random() * 2 + 'px',
                                 opacity: Math.random() * 0.5 + 0.1,
+                                filter: `blur(${Math.random() * 1}px)`
                             }}
                             animate={{
-                                y: [0, -100, 0],
-                                scale: [1, 1.5, 1],
-                                opacity: [0.2, 0.5, 0.2]
+                                y: [0, -200],
+                                opacity: [0, 0.4, 0]
                             }}
                             transition={{
                                 duration: Math.random() * 10 + 10,

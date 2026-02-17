@@ -21,7 +21,21 @@ const projects = [
 
 export const Portfolio = () => {
     return (
-        <section id="work" className="py-24 bg-anvora-black relative">
+        <section id="work" className="py-24 bg-anvora-black relative overflow-hidden">
+            {/* Background Wireframes */}
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.03] pointer-events-none">
+                <svg viewBox="0 0 200 200" className="w-full h-full animate-spin-slower">
+                    <circle cx="100" cy="100" r="90" stroke="white" strokeWidth="0.5" fill="none" strokeDasharray="4 4" />
+                    <circle cx="100" cy="100" r="60" stroke="white" strokeWidth="0.5" fill="none" />
+                    <path d="M100 10 L100 190 M10 100 L190 100" stroke="white" strokeWidth="0.5" />
+                </svg>
+            </div>
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] opacity-[0.03] pointer-events-none">
+                <svg viewBox="0 0 200 200" className="w-full h-full animate-spin-reverse-slower">
+                    <rect x="50" y="50" width="100" height="100" stroke="white" strokeWidth="0.5" fill="none" />
+                    <rect x="70" y="70" width="60" height="60" stroke="white" strokeWidth="0.5" fill="none" transform="rotate(45 100 100)" />
+                </svg>
+            </div>
             <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -76,7 +90,8 @@ export const Portfolio = () => {
                             </div>
 
                             {/* Hover Border Glow */}
-                            <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 rounded-3xl transition-colors duration-500 pointer-events-none" />
+                            <div className="absolute inset-0 border border-white/10 group-hover:border-anvora-gold/50 rounded-3xl transition-colors duration-500 pointer-events-none" />
+                            <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_30px_rgba(251,191,36,0.1)] pointer-events-none" />
                         </motion.div>
                     ))}
                 </div>

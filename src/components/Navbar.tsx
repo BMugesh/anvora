@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 
+import { BrandLogo } from './ui/BrandLogo';
+
 export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const { scrollY } = useScroll();
@@ -19,12 +21,9 @@ export const Navbar = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 3.5 }} // Delay to match loading screen
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
-                {/* Logo */}
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-anvora-indigo to-anvora-indigo-dark flex items-center justify-center">
-                        <span className="text-white font-display font-bold text-lg">A</span>
-                    </div>
-                    <span className="text-white font-display font-bold text-xl tracking-wide">ANVORA</span>
+                <div className="flex items-center gap-3">
+                    <img src="/logo.png" alt="Anvora Logo" className="h-12 w-auto object-contain drop-shadow-[0_0_15px_rgba(79,70,229,0.6)]" />
+                    <BrandLogo />
                 </div>
 
                 {/* Desktop Links (Hidden on mobile for now, can expand later) */}

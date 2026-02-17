@@ -11,7 +11,18 @@ const items = [
 
 export const Community = () => {
     return (
-        <section className="py-24 bg-anvora-black">
+        <section className="py-24 bg-anvora-black relative overflow-hidden">
+            {/* Network Connections Background */}
+            <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none">
+                <svg className="w-full h-full">
+                    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="2" cy="2" r="1" fill="white" />
+                    </pattern>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+                    <path d="M0,100 Q400,150 800,100 T1600,100" stroke="white" strokeWidth="1" fill="none" className="animate-pulse" />
+                    <path d="M0,300 Q400,350 800,300 T1600,300" stroke="white" strokeWidth="1" fill="none" className="animate-pulse delay-700" />
+                </svg>
+            </div>
             <div className="container mx-auto px-6">
                 <div className="text-center mb-16">
                     <h2 className="text-anvora-gold text-sm font-medium tracking-[0.3em] uppercase mb-4">
@@ -33,7 +44,7 @@ export const Community = () => {
                             className="group glass-card p-8 rounded-2xl border border-white/5 hover:border-anvora-gold/30 transition-all duration-300 relative overflow-hidden"
                         >
                             <div className={`absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity`}>
-                                <ArrowUpRight className={`w-5 h-5 ${item.color === 'gold' ? 'text-anvora-gold' : 'text-anvora-indigo'}`} />
+                                <ArrowUpRight className={`w-5 h-5 ${item.color === 'gold' ? 'text-anvora-gold' : 'text-anvora-indigo'} group-hover:animate-pulse`} />
                             </div>
 
                             <p className="text-lg font-medium text-white/90 relative z-10 leading-relaxed group-hover:text-white transition-colors">

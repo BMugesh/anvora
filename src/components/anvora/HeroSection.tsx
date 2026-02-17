@@ -81,7 +81,7 @@ function MagneticButton({ children, href, target, ...props }: any) {
     const rect = ref.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    
+
     const distance = Math.sqrt(x * x + y * y);
     if (distance < 80) {
       setPosition({ x: x * 0.3, y: y * 0.3 });
@@ -207,7 +207,7 @@ export default function HeroSection() {
             className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] mb-6 tracking-tight"
             style={{ color: "hsl(0 0% 100%)" }}
           >
-            We Engineer <br /> Digital <span className="text-gradient-cinematic">Presence.</span>
+            Build Bold. <br /> <span className="text-gradient-cinematic">Rise Digital.</span>
           </motion.h1>
         </motion.div>
 
@@ -219,8 +219,9 @@ export default function HeroSection() {
           className="text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed"
           style={{ color: "hsl(0 0% 100% / 0.6)" }}
         >
-          Not templates. Not noise. We build digital experiences that demand attention,
-          establish authority, and convert visitors into believers.
+          We engineer digital presence. <br />
+          Not templates. Not noise. Real impact. <br />
+          Built for those who refuse to be ignored.
         </motion.p>
 
         {/* CTAs */}

@@ -9,46 +9,49 @@ export const BrandLogo = () => {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="relative z-10"
             >
-                {/* Base Metallic Text */}
-                <span className="
-                    font-display font-semibold text-2xl tracking-[3px] uppercase
-                    text-transparent bg-clip-text
-                    bg-gradient-to-b from-white via-slate-300 to-slate-500
-                    drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]
-                    filter
-                ">
-                    ANVORA
-                </span>
-
-                {/* Subtle Cool Blue Glow (Outer) */}
-                <span className="
-                    absolute inset-0 -z-10
-                    font-display font-semibold text-2xl tracking-[3px] uppercase
-                    text-anvora-indigo-glow blur-md select-none opacity-50
-                ">
-                    ANVORA
-                </span>
-
-                {/* Light Sweep Animation Overlay */}
-                <motion.span
-                    className="
-                        absolute inset-0
-                        font-display font-semibold text-2xl tracking-[3px] uppercase
-                        text-transparent bg-clip-text
-                        bg-gradient-to-r from-transparent via-white/50 to-transparent
-                        bg-[length:200%_100%]
-                        pointer-events-none select-none
-                    "
-                    initial={{ backgroundPosition: "100% 0%" }}
-                    animate={{ backgroundPosition: "-100% 0%" }}
-                    transition={{
-                        duration: 1.5,
-                        ease: "easeInOut",
-                        delay: 0.8, // Start after entrance
-                        repeat: 0 // Play once
-                    }}
+                {/* Base Metallic Silver Gradient Text */}
+                <span
+                    className="font-display font-semibold text-2xl uppercase select-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]"
                     style={{
-                        backgroundSize: "200% 100%"
+                        letterSpacing: '3px',
+                        backgroundImage: 'linear-gradient(180deg, #F2F6FB 0%, #C9D4E2 50%, #9FAEC0 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                    }}
+                >
+                    ANVORA
+                </span>
+
+                {/* Subtle Cool Blue Outer Glow */}
+                <span
+                    className="absolute inset-0 -z-10 font-display font-semibold text-2xl uppercase blur-md select-none pointer-events-none"
+                    style={{
+                        letterSpacing: '3px',
+                        color: 'hsl(220 60% 70% / 0.35)',
+                    }}
+                >
+                    ANVORA
+                </span>
+
+                {/* One-time Light Sweep */}
+                <motion.span
+                    className="absolute inset-0 font-display font-semibold text-2xl uppercase pointer-events-none select-none"
+                    style={{
+                        letterSpacing: '3px',
+                        backgroundImage: 'linear-gradient(90deg, transparent 0%, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%, transparent 100%)',
+                        backgroundSize: '200% 100%',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                    }}
+                    initial={{ backgroundPosition: "150% 0%" }}
+                    animate={{ backgroundPosition: "-50% 0%" }}
+                    transition={{
+                        duration: 1.8,
+                        ease: "easeInOut",
+                        delay: 1.0,
+                        repeat: 0,
                     }}
                 >
                     ANVORA

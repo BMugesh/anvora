@@ -14,7 +14,7 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 
     useEffect(() => {
         // Reduced timeout for better mobile experience
-        const fallbackTimeout = setTimeout(handleEnd, 8000);
+        const fallbackTimeout = setTimeout(handleEnd, 9000);
         return () => clearTimeout(fallbackTimeout);
     }, [handleEnd]);
 

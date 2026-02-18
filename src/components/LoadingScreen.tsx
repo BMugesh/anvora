@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { motion } from 'framer-motion';
 
 interface LoadingScreenProps {
@@ -6,12 +6,15 @@ interface LoadingScreenProps {
 }
 
 export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
+    const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
     const handleEnd = useCallback(() => {
         onComplete();
     }, [onComplete]);
 
     useEffect(() => {
-        const fallbackTimeout = setTimeout(handleEnd, 8000);
+        // Reduced timeout for better mobile experience
+        const fallbackTimeout = setTimeout(handleEnd, 5000);
         return () => clearTimeout(fallbackTimeout);
     }, [handleEnd]);
 
@@ -36,7 +39,15 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                     console.error("Loading video failed");
                     handleEnd();
                 }}
+                onPlaying={() => setIsVideoLoaded(true)}
             />
+
+            {/* Fallback spinner if video takes too long */}
+            {!isVideoLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black">
+                    <div className="w-12 h-12 border-4 border-anvora-indigo/30 border-t-anvora-indigo rounded-full animate-spin" />
+                </div>
+            )}
             {/* Crossfade overlay — softens the cut */}
             <motion.div
                 className="absolute inset-0 pointer-events-none"
